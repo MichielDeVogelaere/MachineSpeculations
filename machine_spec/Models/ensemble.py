@@ -30,7 +30,6 @@ class EnsembleModel(Model):
     def predict_proba(self, X):
         probabilities = [model.predict_proba(X)[:, 1] for model in self.models]
         soft_voting_proba = np.mean(np.vstack(probabilities), axis=0)
-        # Return in sklearn format: n_samples x n_classes
         return np.vstack([1 - soft_voting_proba, soft_voting_proba]).T
 
     def get_accuracy(self, X_val, y_val):

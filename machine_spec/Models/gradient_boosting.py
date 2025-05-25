@@ -12,11 +12,11 @@ class GradientBoostingClassifierModel(Model):
     def train(self, X_train, y_train):
         param_grid = {
             'n_estimators': [100, 200],
-            'learning_rate': [0.01, 0.1, 0.2],
-            'max_depth': [3, 5, 7],
+            'learning_rate': [0.01, 0.05, 0.1, 0.15],
+            'max_depth': [3, 4, 5, 6],
             'min_samples_split': [2, 20],
             'min_samples_leaf': [1, 10],
-            'subsample': [0.6, 0.4],  
+            'subsample': [0.8, 0.9, 1.0],  
             'max_features': ['sqrt', 'log2', None]
         }
         grid_search = GridSearchCV(

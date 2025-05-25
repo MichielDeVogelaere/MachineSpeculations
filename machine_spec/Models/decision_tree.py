@@ -12,9 +12,9 @@ class DecisionTreeModel(Model):
     def train(self, X_train, y_train):
 
         param_grid = {
-            'max_depth': [None, 5, 10, 20],
-            'min_samples_split': [2, 5, 10],
-            'min_samples_leaf': [1, 2, 4],
+            'max_depth': [3, 5, 7, 10],
+            'min_samples_split': [5, 10, 20, 50],
+            'min_samples_leaf': [2, 5, 10, 20],
             'criterion': ['gini', 'entropy'],
             'ccp_alpha': [0.0, 0.0001, 0.0005, 0.001]
         }

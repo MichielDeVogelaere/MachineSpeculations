@@ -12,7 +12,7 @@ class LogisticRegressionModel(Model):
     def train(self, X_train, y_train):
         param_grid = {
                 'C': [0.001, 0.01, 0.1, 1, 10 ,100 ],
-                'penalty': ['l1', 'l2'],
+                'penalty': ['l1', 'l2'], # Lasso & Ridge
                 'solver': ['liblinear'],
         }
             
@@ -25,4 +25,4 @@ class LogisticRegressionModel(Model):
             verbose=0,
         )
         grid_search.fit(X_train, y_train)
-        self.model.fit(X_train, y_train)
+        self.model = grid_search.best_estimator_ 

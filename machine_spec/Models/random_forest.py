@@ -1,6 +1,6 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, roc_auc_score
-from sklearn.model_selection import RandomizedSearchCV
+from sklearn.model_selection import GridSearchCV
 from Models.model import Model
 import numpy as np
 
@@ -10,7 +10,7 @@ class RandomForestModel(Model):
         self.model = RandomForestClassifier(random_state=42)
     
     def train(self, X_train, y_train):
-        param_distributions = {
+        param_grid = {
             'n_estimators': np.arange(100, 301, 10),
             'max_features': ['sqrt', 'log2', None],
             'max_depth': [None, 10, 20],
@@ -19,9 +19,9 @@ class RandomForestModel(Model):
             'bootstrap': [True, False]
         }
         
-        randomized_search = RandomizedSearchCV(
+        grid_search = GridSearchCV(
             self.model,
-            param_distributions=param_distributions,
+            param_grid,
             n_iter=100,              
             cv=5,
             scoring='roc_auc',
@@ -29,6 +29,5 @@ class RandomForestModel(Model):
             verbose=0,
             random_state=42
         )
-        
-        randomized_search.fit(X_train, y_train)
-        self.model = randomized_search.best_estimator_
+        grid_search.fit(X_train, y_train)
+        self.model = grid_search.best_estimator_
