@@ -15,7 +15,7 @@ class EnsembleModel(Model):
             LogisticRegressionModel(),
             RandomForestModel(),
             GradientBoostingClassifierModel(),
-            NaiveBayesModel()
+            NaiveBayesModel(),
         ]
 
     def train(self, X_train, y_train):

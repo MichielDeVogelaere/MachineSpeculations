@@ -11,7 +11,7 @@ class RandomForestModel(Model):
     
     def train(self, X_train, y_train):
         param_grid = {
-            'n_estimators': np.arange(100, 301, 10),
+            'n_estimators': [100, 301, 10],
             'max_features': ['sqrt', 'log2', None],
             'max_depth': [None, 10, 20],
             'min_samples_split': [2, 5, 10],
@@ -21,13 +21,11 @@ class RandomForestModel(Model):
         
         grid_search = GridSearchCV(
             self.model,
-            param_grid,
-            n_iter=100,              
+            param_grid,             
             cv=5,
             scoring='roc_auc',
             n_jobs=-1,
             verbose=0,
-            random_state=42
         )
         grid_search.fit(X_train, y_train)
         self.model = grid_search.best_estimator_

@@ -11,8 +11,8 @@ class LogisticRegressionModel(Model):
     
     def train(self, X_train, y_train):
         param_grid = {
-                'C': [0.001, 0.01, 0.1, 1, 10 ,100 ],
-                'penalty': ['l1', 'l2'], # Lasso & Ridge
+                'C': [0.001, 0.01, 0.1, 1],
+                'penalty': ['l1', 'l2'], 
                 'solver': ['liblinear'],
         }
             
