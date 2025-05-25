@@ -10,7 +10,6 @@ class KNeighborsClassifierModel(Model):
         self.model = KNeighborsClassifier() # random state?
 
     def train(self, X_train, y_train):
-        knn = KNeighborsClassifier()
         param_grid = {
             'n_neighbors': [3, 5, 7, 9],
             'weights': ['uniform', 'distance'],
